@@ -1,0 +1,100 @@
+{
+  "name": "discforge-studio",
+  "productName": "DiscForge Studio",
+  "version": "1.0.0",
+  "description": "Author DVD, Blu-ray and 4K UHD Blu-ray discs with interactive menus, then burn them.",
+  "main": "src/main/main.js",
+  "license": "MIT",
+  "author": "DiscForge Studio contributors",
+  "homepage": "https://github.com/OWNER/DiscForge-Studio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OWNER/DiscForge-Studio.git"
+  },
+  "keywords": [
+    "dvd",
+    "blu-ray",
+    "uhd",
+    "authoring",
+    "burning",
+    "menus",
+    "electron"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "electron .",
+    "fetch-tools": "node scripts/fetch-tools.js",
+    "dist": "node scripts/fetch-tools.js && electron-builder --win nsis --x64",
+    "dist:dir": "node scripts/fetch-tools.js && electron-builder --win dir --x64",
+    "test:e2e": "node test/e2e.js"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "1.1.0"
+  },
+  "devDependencies": {
+    "electron": "45.2.1",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "io.github.discforge.studio",
+    "productName": "DiscForge Studio",
+    "copyright": "Copyright © DiscForge Studio contributors",
+    "asar": false,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "package.json",
+      "src/**/*",
+      "assets/**/*",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md"
+    ],
+    "extraResources": [
+      {
+        "from": "vendor/tools",
+        "to": "tools"
+      },
+      {
+        "from": "THIRD_PARTY_NOTICES.md",
+        "to": "THIRD_PARTY_NOTICES.md"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "artifactName": "DiscForge-Studio-Setup-${version}.${ext}",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "DiscForge Studio",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "license": "build/license.txt",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    },
+    "electronLanguages": [
+      "en-US"
+    ],
+    "compression": "maximum",
+    "publish": null
+  }
+}

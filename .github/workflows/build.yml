@@ -1,0 +1,54 @@
+name: Build installer
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install DVDStyler (provides dvdauthor and spumux)
+        run: choco install dvdstyler -y --no-progress
+
+      - name: Build the IMAPI2 burning helper
+        shell: bash
+        run: |
+          export PATH="/c/msys64/mingw64/bin:$PATH"
+          if command -v g++ >/dev/null 2>&1; then
+            mkdir -p native/build
+            g++ -O2 -std=c++17 -municode -static -static-libgcc -static-libstdc++ \
+              native/dfburn/dfburn.cpp -o native/build/dfburn.exe -lole32 -loleaut32 -lshlwapi -luuid
+          else
+            echo "MinGW not found; using native/prebuilt/dfburn.exe"
+          fi
+
+      - run: npm ci
+
+      - name: Build installer
+        run: npm run dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DiscForge-Studio-Setup
+          path: dist/*.exe
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.exe
+          generate_release_notes: true

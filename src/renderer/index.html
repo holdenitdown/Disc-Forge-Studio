@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: file:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self'">
+  <title>DiscForge Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="titlebar">
+      <div class="logo"><div class="logo-mark"></div>DiscForge Studio</div>
+      <input class="project-name" id="projectName" spellcheck="false" title="Project name">
+      <div class="segmented" id="formatSwitch">
+        <button data-fmt="dvd">DVD</button>
+        <button data-fmt="bd">Blu-ray</button>
+        <button data-fmt="uhd">4K UHD</button>
+      </div>
+      <div class="spacer"></div>
+      <div class="tb-actions">
+        <button class="btn ghost" id="btnNew" title="New project">New</button>
+        <button class="btn ghost" id="btnOpen" title="Open project (Ctrl+O)">Open</button>
+        <button class="btn ghost" id="btnSave" title="Save project (Ctrl+S)">Save</button>
+      </div>
+    </header>
+
+    <nav class="rail" id="rail">
+      <button data-view="media" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5v5l4-2.5z" fill="currentColor"/></svg>Media</button>
+      <button data-view="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6M7 12.5h9M7 16h5"/></svg>Menu</button>
+      <button data-view="create"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg>Create</button>
+      <div class="rail-spacer"></div>
+      <button data-action="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</button>
+    </nav>
+
+    <main id="main">
+      <section class="view on" id="view-media"></section>
+      <section class="view" id="view-menu"></section>
+      <section class="view" id="view-create"></section>
+    </main>
+
+    <footer class="footer" id="footer"></footer>
+  </div>
+
+  <aside class="drawer" id="drawer"></aside>
+  <div class="modal-back" id="modal"></div>
+  <div class="modal-back" id="progress"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
