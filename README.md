@@ -1,5 +1,6 @@
 # DiscForge Studio
-<img width="3037" height="1440" alt="HomeScreen" src="https://github.com/user-attachments/assets/ee279ff8-e15a-416c-852e-2b99c1f371e2" />
+<img width="2557" height="1437" alt="HomeScreen" src="https://github.com/user-attachments/assets/504b15f9-5667-49b7-ae49-f84751e4f187" />
+
 Author **DVD**, **Blu-ray** and **4K UHD Blu-ray** discs with interactive menus from your own videos, photo slideshows and music, then burn them, all in one modern Windows app.
 
 - Real interactive menus on every format: DVD menus with highlight buttons, Blu-ray **HDMV interactive graphics** with a **pop-up menu** during playback, scene selection, audio and subtitle pages.
